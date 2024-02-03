@@ -1,7 +1,22 @@
 #MODEL 1
 #TEST OF CHANGE
+
+#Function Library
+
+#Simple function to get the input of the users, this input is the dollar
+#amount that the company has invested, will be standardized to a float for 
+#all calculations - will NOT round to hundreds place 
+def get_number_input():
+    while True:
+        try:
+            user_input = input("Enter the numerical dollar value of  investment: ")
+            number = float(user_input)  # Standardize to float for all calcs
+            return number  # Return the float
+        except ValueError:
+            print("Invalid input. Please enter a valid number (int or float).")
+
 #Investment of funds
-invst = 1000.0
+invst = get_number_input()
 
 #Average_time_before_investment
 avg_before = 12.4
