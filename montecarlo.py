@@ -1,24 +1,24 @@
-import numpy as np
-import matplotlib.pyplot as plt
+import random
+import math
 
-def calculate_standard_deviation(data):
-    mean = np.mean(data)
-    variance = np.var(data)
-    std_deviation = np.sqrt(variance)
-    return std_deviation
+def monte_carlo_pi_simulation(num_samples):
+    inside_circle = 0
 
-def plot_data(data):
-    plt.hist(data, bins='auto', color='blue', alpha=0.7, rwidth=0.85)
-    plt.title('Distribution of Fine Size for Enterpise Data Breaches ')
-    plt.xlabel('Cost in Millions')
-    plt.ylabel('Frequency')
-    plt.show()
+    for _ in range(num_samples):
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
 
-# Example data (replace this with your own set of integers)
-data = [1190, 887, 575, 403, 370, 350, 277, 255, 200, 190, 148, 120, 102]
+        distance = math.sqrt(x**2 + y**2)
 
-std_deviation = calculate_standard_deviation(data)
-print(f"Standard Deviation: {std_deviation}")
+        if distance <= 1:
+            inside_circle += 1
 
-# Plot the data
-plot_data(data)
+    pi_estimate = (inside_circle / num_samples) * 4
+    return pi_estimate
+
+# Number of random points to generate
+num_samples = 100000
+
+estimated_pi = monte_carlo_pi_simulation(num_samples)
+
+print(f"Estimated value of Pi using {num_samples} samples: {estimated_pi}")
