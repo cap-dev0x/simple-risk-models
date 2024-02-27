@@ -1,9 +1,5 @@
 #MODEL 3
 
-##TODO Convert this model into an object
-##TODO Create functionality for user input, need getter functions for 
-##discovery_wilds, discovery_systems, and cve_scores 
-
 class Model_3:
     def __init__(self):
         self.investment = self.get_investment_input()
@@ -14,6 +10,23 @@ class Model_3:
         self.impact_score = False #currently set to false for troubleshooting
         self.investment_performance_score = False #same set as impact_score
 
+    #User sets the number of iterations, populates the user input into the 
+    #the arrays of the object
+    #TODO add input validation for each of the input functions in the foo
+    def get_inputs(self):
+        total_rounds = 0
+        while total_rounds == 0:
+            try:
+                user_input = input("Enter the total number of iterations: ")
+                total_rounds = user_input
+            except:
+                print("Invalid input, please enter a whole number")
+        
+        for item in range(0, total_rounds):
+            self.discovery_wilds[item] = input("Enter the time of CVE publication")
+            self.discovery_systems[item] = input("Enter the time of discovery on system")
+            self.cve_scores[item] = input("Enter the CVE score for the CVE")
+            
     #Simple function to get the input of the users, this input is the dollar
     #amount that the company has invested, will be standardized to a float for 
     #all calculations - will NOT round to hundreds place 
